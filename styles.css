@@ -1,0 +1,27 @@
+* {
+    font-size: 50px;
+}
+
+.row {
+    display: flex;
+}
+
+.display {
+    margin: 5px;
+    width: 430px;
+    height: 100px;
+    background-color: grey;
+    text-align: right;
+}
+
+.keys * * {
+    background-color: grey;
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+#zero {
+    width: 210px;
+}
