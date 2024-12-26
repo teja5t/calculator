@@ -21,17 +21,56 @@ function divide(a, b) {
     return a / b;
 }
 
-let n1, n2, operator;
-
 function operate(a, b, o) {
     switch (o) {
         case '+':
             return add(a, b);
         case '-':
             return subtract(a, b);
-        case 'x':
+        case '*':
             return multiply(a, b);
         case '/':
             return divide(a, b);
     }
 }
+
+let display = "";
+
+function updateDisplay() {
+    document.querySelector(".display").textContent = display;
+}
+
+const numberButtons = document.querySelectorAll(".number");
+numberButtons.forEach(numberButton => {
+    numberButton.addEventListener("click", () => {
+        display += numberButton.textContent;
+        updateDisplay();
+    });
+});
+
+let n1, n2, operator;
+
+//what happens when u click an operator
+function clickOperator(op) {
+    if (n1) {
+        n1 = operate(n1, +display, operator);
+    }
+    else {
+        n1 = +display;
+    }
+    operator = op;
+    display = "";
+    updateDisplay();
+}
+
+document.querySelector("#addition").addEventListener("click", () => clickOperator("+"));
+document.querySelector("#subtraction").addEventListener("click", () =>clickOperator("-"));
+document.querySelector("#multiplication").addEventListener("click", () => clickOperator("*"));
+document.querySelector("#division").addEventListener("click", () => clickOperator("/"));
+
+document.querySelector("#equals").addEventListener("click", () => {
+    n2 = +display;
+    display = operate(n1, n2, operator);
+    updateDisplay();
+    n1 = display;
+})
