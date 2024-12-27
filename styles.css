@@ -1,6 +1,5 @@
 * {
-    font-size: 50px;
-    font-family:'Courier New', Courier, monospace;
+    font-family: monospace;
 }
 
 body {
@@ -15,7 +14,6 @@ body {
 .calculator {
     background-color: black;
     padding: 5px;
-    width: 440px;
     border-radius: 5px;
     border: solid darkslategray;
 }
@@ -25,8 +23,9 @@ body {
 }
 
 .display {
-    margin: 5px;
-    width: 430px;
+    margin: 2px;
+    margin-bottom: 5px;
+    width: 412px;
     height: 100px;
     background-color: lightskyblue;
     display: flex;
@@ -35,17 +34,23 @@ body {
     border-radius: 5px;
     border: solid grey;
     box-sizing: border-box;
+    font-size: 50px;
 }
 
 .keys * * {
     box-sizing: border-box;
-    margin: 5px;
+    margin: 2px;
     width: 100px;
     height: 100px;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 26px;
     border-radius: 5px;
     border: solid grey;
+    font-size: 36px;
+}
+
+#zero {
+    width: 204px;
 }
 
 .number,
@@ -62,8 +67,4 @@ body {
 .operator,
 #equals {
     background-color: palegreen;
-}
-
-#zero {
-    width: 210px;
 }

@@ -32,21 +32,25 @@ function operate(a, b, o) {
 }
 
 let display = "";
-const displaySize = 14;
+const DISPLAY_SIZE = 13;
 
 function updateDisplay() {
+    if (display.includes("e")) {
+        display = (+display).toFixed(DISPLAY_SIZE);
+    }
+
     let displayNum = +display;
-    if (displayNum >= 10 ** (displaySize)) {
+    if (displayNum >= 10 ** (DISPLAY_SIZE)) {
         document.querySelector(".display").textContent = "TOO LARGE"
     }
-    else if (display.length < displaySize) {
+    else if (displayNum != 0 && -(10 ** (-DISPLAY_SIZE + 3)) < displayNum && displayNum < 10 ** (-DISPLAY_SIZE + 2)) {
+        document.querySelector(".display").textContent = "TOO SMALL";
+    }
+    else if (display.length < DISPLAY_SIZE) {
         document.querySelector(".display").textContent = display;
     }
-    else if (display[displaySize - 1] == ".") {
-        document.querySelector(".display").textContent = display.slice(0, displaySize);
-    }
     else {
-        document.querySelector(".display").textContent = display.slice(0, displaySize + 1);
+        document.querySelector(".display").textContent = display.slice(0, DISPLAY_SIZE);
     }
 }
 
@@ -93,7 +97,7 @@ document.querySelector("#equals").addEventListener("click", () => {
     if (!operator) {
         return;
     }
-    
+
     n2 = +display;
     display = "" + operate(n1, n2, operator);
     updateDisplay();
