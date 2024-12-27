@@ -1,6 +1,3 @@
-
-//be sure to check all values are ints before being passed to functions
-
 function add(a, b) {
     return a + b;
 }
@@ -35,15 +32,36 @@ function operate(a, b, o) {
 }
 
 let display = "";
+const displaySize = 9;
 
 function updateDisplay() {
-    document.querySelector(".display").textContent = display;
+    let displayNum = +display;
+    if (displayNum > 999999999) {
+        document.querySelector(".display").textContent = "TOO LARGE"
+    }
+    else if (display.length < displaySize) {
+        document.querySelector(".display").textContent = display;
+    }
+    else if (display[displaySize - 1] == ".") {
+        document.querySelector(".display").textContent = display.slice(0, displaySize - 1);
+    }
+    else {
+        document.querySelector(".display").textContent = display.slice(0, displaySize);
+    }
 }
+
+let tempNumber = false;
 
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", () => {
-        display += numberButton.textContent;
+        if (tempNumber) {
+            display = numberButton.textContent;
+            tempNumber = false;
+        }
+        else {
+            display += numberButton.textContent;
+        }
         updateDisplay();
     });
 });
@@ -52,14 +70,17 @@ let n1, n2, operator;
 
 //what happens when u click an operator
 function clickOperator(op) {
-    if (n1) {
-        n1 = operate(n1, +display, operator);
+    if (n1 && operator) {
+        n2 = +display;
+        n1 = operate(n1, n2, operator);
+        n2 = null;
     }
     else {
         n1 = +display;
     }
     operator = op;
     display = "";
+    decimalUsed = false;
     updateDisplay();
 }
 
@@ -70,7 +91,45 @@ document.querySelector("#division").addEventListener("click", () => clickOperato
 
 document.querySelector("#equals").addEventListener("click", () => {
     n2 = +display;
-    display = operate(n1, n2, operator);
+    display = "" + operate(n1, n2, operator);
     updateDisplay();
     n1 = display;
-})
+    operator = null;
+    n2 = null;
+    decimalUsed = false;
+    tempNumber = true;
+});
+
+let decimalUsed = false;
+
+document.querySelector("#decimal").addEventListener("click", () => {
+    if (tempNumber) {
+        display = ".";
+        tempNumber = false;
+    }
+    else if (!decimalUsed) {
+        display += ".";
+        decimalUsed = true;
+    }
+    updateDisplay();
+});
+
+document.querySelector("#all-clear").addEventListener("click", () => {
+    display = "";
+    n1 = null;
+    n2 = null;
+    operator = null;
+    decimalUsed = false;
+    tempNumber = false;
+    updateDisplay();
+});
+
+document.querySelector("#change-sign").addEventListener("click", () => {
+    display = "" + -(+display);
+    updateDisplay();
+});
+
+document.querySelector("#percent").addEventListener("click", () => {
+    display = "" + (+display) / 100;
+    updateDisplay();
+});
