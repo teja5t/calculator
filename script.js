@@ -83,9 +83,8 @@ function clickOperator(op) {
         n1 = +display;
     }
     operator = op;
-    display = "";
+    tempNumber = true;
     decimalUsed = false;
-    updateDisplay();
 }
 
 document.querySelector("#addition").addEventListener("click", () => clickOperator("+"));

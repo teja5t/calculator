@@ -41,12 +41,15 @@ body {
     box-sizing: border-box;
     margin: 2px;
     width: 100px;
-    height: 100px;
+    height: 80px;
     text-align: center;
-    padding-top: 26px;
     border-radius: 5px;
     border: solid grey;
     font-size: 36px;
+}
+
+.keys * *:active {
+    opacity: 75%;
 }
 
 #zero {
