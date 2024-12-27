@@ -32,7 +32,7 @@ function operate(a, b, o) {
 }
 
 let display = "";
-const DISPLAY_SIZE = 13;
+const DISPLAY_SIZE = 10;
 
 function updateDisplay() {
     if (display.includes("e")) {
