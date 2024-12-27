@@ -32,21 +32,21 @@ function operate(a, b, o) {
 }
 
 let display = "";
-const displaySize = 9;
+const displaySize = 14;
 
 function updateDisplay() {
     let displayNum = +display;
-    if (displayNum > 999999999) {
+    if (displayNum >= 10 ** (displaySize)) {
         document.querySelector(".display").textContent = "TOO LARGE"
     }
     else if (display.length < displaySize) {
         document.querySelector(".display").textContent = display;
     }
     else if (display[displaySize - 1] == ".") {
-        document.querySelector(".display").textContent = display.slice(0, displaySize - 1);
+        document.querySelector(".display").textContent = display.slice(0, displaySize);
     }
     else {
-        document.querySelector(".display").textContent = display.slice(0, displaySize);
+        document.querySelector(".display").textContent = display.slice(0, displaySize + 1);
     }
 }
 
@@ -90,6 +90,10 @@ document.querySelector("#multiplication").addEventListener("click", () => clickO
 document.querySelector("#division").addEventListener("click", () => clickOperator("/"));
 
 document.querySelector("#equals").addEventListener("click", () => {
+    if (!operator) {
+        return;
+    }
+    
     n2 = +display;
     display = "" + operate(n1, n2, operator);
     updateDisplay();

@@ -3,6 +3,23 @@
     font-family:'Courier New', Courier, monospace;
 }
 
+body {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.calculator {
+    background-color: black;
+    padding: 5px;
+    width: 440px;
+    border-radius: 5px;
+    border: solid darkslategray;
+}
+
 .row {
     display: flex;
 }
@@ -11,16 +28,40 @@
     margin: 5px;
     width: 430px;
     height: 100px;
-    background-color: grey;
-    text-align: right;
+    background-color: lightskyblue;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    border-radius: 5px;
+    border: solid grey;
+    box-sizing: border-box;
 }
 
 .keys * * {
-    background-color: grey;
+    box-sizing: border-box;
     margin: 5px;
     width: 100px;
     height: 100px;
     text-align: center;
+    padding-top: 20px;
+    border-radius: 5px;
+    border: solid grey;
+}
+
+.number,
+#decimal {
+    background-color: palegoldenrod;
+}
+
+#all-clear,
+#change-sign,
+#percent {
+    background-color: palevioletred;
+}
+
+.operator,
+#equals {
+    background-color: palegreen;
 }
 
 #zero {
